@@ -2,136 +2,72 @@
 # :books: Table of Contents <!-- omit in toc -->
 
 - [:briefcase: Dataset and Requirement](#dataset-and-requirement)
-- [:bookmark_tabs: Dataset Information](#bookmark_tabsdataset-information)
-- [🔎 Clean data then make operational report and dashboard](#--clean-data-then-make-operational-report-and-dashboard)
+- [:bookmark_tabs: Example Data](#bookmark_tabsexample-data)
+- [🔎 Explore data and test model](#--explore-data-and-test-model)
 
 ---
 
 # Dataset and Requirement
-The data set belongs to a leading online E-Commerce company, contain information
+The data set belongs to a leading online E-Commerce company, contains information of 5630 customers. It shows personal information, purchasing habits, feedback,... and whether the customer has churned or not.
 
-Dataset contains information about the operations of a Vietnamese company in the third quarter of 2020, including 3 tables:
-- MKT: Contains information about Marketing activities
-- Sales: Contains information about sales activities
-- Vận đơn: Contains information about bill of lading activities 
 ### ❓ Question
 Can you predict whether customers will churn based on customer data ?
 
 ---
-# :bookmark_tabs:Dataset Information
+# :bookmark_tabs:Example Data
 
-<details><summary> 👆🏼 MKT table </summary>
+<details><summary> 👆🏼 Data information </summary>
 
-This data has 21 columns, including:
-
-- Date:The date the marketing campaign was implemented
-- Channel: Channel used to display ads
-- MKTer: Name of staff member
-- Chiến dịch: Name of marketing campaign
-- Chi phí Marketing: Marketing expense
-- Impression: Number of ad impressions
-- Reach: Total number of unique individuals exposed to the ad
-- Click: Number of clicks on ad
-- Share: Number of shares
-- Cmt: Number of comments
-- Inbox: Number of inboxs
-- Lead MKT: Number of Leads
-- Đơn hàng: Numbers of orders
-- Doanh thu: Revenue
-- Paid Revenue 1: revenue generated from products that were sold through marketing campaign
-- Giá/Lead: Expense per Lead
-- Đơn/Lead: Order per Lead
-- CPM: Expense per 1000 Impressions
-- CPC: Expense per Click
-- Giá Mess\n(Cmt + Inbox): Expense per Cmt or Inbox
-- Mục danh sách: Total marketing expenses and taxes
-
- 
+Data has 20 columns and 5630 rows:
+- CustomerID: Unique customer ID
+- Churn: Churn Flag (1 is churned, 0 is not churned)
+- Tenure: Tenure of customer in organization
+- CityTier: City Tier
+- PreferredLoginDevice: Preferred login device of customer
+- WarehouseToHome: Distance in between warehdwouse to home of customer
+- PreferredPaymentMode: Preferred payment method of customer
+- Gender: Gender of customer
+- HourSpendOnApp: Number of hours spend on mobile application or website
+- NumberOfDeviceRegistered: Total number of devices is registered on particular customer
+- PreferedOrderCat: Preferred order category of customer in last month
+- SatisfactionScore: Satisfactory score of customer on service
+- MaritalStatus: Marital status of customer
+- NumberOfAddress: Total number of added added on particular customer
+- Complain: Any complaint has been raised in last month
+- OrderAmountHikeFromlastYear: Percentage increases in order from last year
+- CouponUsed: Total number of coupon has been used in last month
+- OrderCount: Total number of orders has been places in last month
+- DaySinceLastOrder: Day Since last order by customer
+- CashbackAmount: Average cashback in last month
 
 </details>
 
-<details><summary> 👆🏼 Sales table </summary>
 
-Data has 21 columns, including:
+<details><summary> 👆🏼 Data sample rows </summary>
 
-- 'Unnamed: 0' : Unclear
-- Giờ: The time that customers leave their information on the ads
-- Khách hàng: Name of Lead
-- SĐT: Number phone of Lead
-- Channel: Channel which customer is advertised
-- Chiến dịch: Marketing campaign which customer is advertised
-- Content: Unclear
-- Marketer 2: Name of marketer
-- Type of Lead: Type of Lead, includes 2 values: Dathang(ordered) and Tuvan (being consulted)
-- Sales Admin xác nhận Type of Lead: Confirmation of type of Lead by Sales Admin
-- Sales: Name of Sales
-- Số lần tương tác: Number of calls
-- Ngày gọi: The day the employee contacted the Lead
-- Trạng thái: Lead status
-- Level: Lead status in more detail
-- Ngày hẹn gọi lại: The date the customer makes an appointment to call back
-- Close date: The date the customer completes payment
-- Tỉnh/TP: Province/City where the customer lives
-- Số lượng bộ sách: Number of book sets ordered
-- Số tiền giảm giá: Discount amount
-- Tổng tiền: Total amount that the customer needs to pay
+<div align="center">
+	
+**Table** 
 
-</details>
+<div align="center">
+	
+First 5 rows
+	
+| CustomerID | Churn |	Tenure |	PreferredLoginDevice |	CityTier |	WarehouseToHome|	PreferredPaymentMode |	Gender |	HourSpendOnApp |	NumberOfDeviceRegistered |	PreferedOrderCat |	 SatisfactionScore |	MaritalStatus |	NumberOfAddress |	Complain |	OrderAmountHikeFromlastYear |	CouponUsed |	OrderCount |	DaySinceLastOrder |	CashbackAmount |
+|-----------|------|-------|---------------------|---------|---------------|---------------------|-------|---------------|-------------------------|-----------------|-------------------|--------------|----------------|---------|----------------------------|-----------|-----------|------------------|---------------|
+| 50001 |	1 |	4.0 |	Mobile Phone |	3 |	6.0 |	Debit Card |	Female |	3.0 |	3 |	Laptop & Accessory |	2 |	Single |	9 |	1 |	11.0 |	1.0 |	1.0 |	5.0 |	159.93 |
+| 50002 |	1 |	NaN|	Phone |	1 |	8.0 |	UPI |	Male |	3.0 |	4 |	Mobile |	3 |	Single |	7 |	1 |	15.0 |	0.0 |	1.0 |	0.0 |	120.90 |
+| 50003 |	1 |	NaN |	Phone |	1 |	30.0 |	Debit Card |	Male |	2.0 |	4 |	Mobile |	3 |	Single |	6 |	1 |	14.0 |	0.0 |	1.0 |	3.0 |	120.28 |
+| 50004 |	1 |	0.0 |	Phone |	3 |	15.0 |	Debit Card |	Male |	2.0 |	4 |	Laptop & Accessory |	5 |	Single |	8 |	0 |	23.0 |	0.0 |	1.0 |	3.0 |	134.07 |
+| 50005 |	1 |	0.0 |	Phone |	1 |	12.0 |	CC |	Male |	NaN |	3 |	Mobile |	5 |	Single |	3 |	0 |	11.0 |	1.0 |	1.0 |	3.0 |	129.60 |
 
-<details><summary> 👆🏼 Vận đơn table </summary>
- This data has 45 columns, including:
-
-- STT: serial number column
-- Mã đơn hàng: code orders
-- Ghi chú đơn hàng: order notes
-- Tags đơn hàng: order tags
-- Nhân viên tạo đơn: Name of the employee creating the order
-- Chi nhánh: branch
-- Nguồn: source
-- Mã vận đơn: bill of lading code
-- Tình trạng gói hàng: order status
-- Trạng thái đối tác: shipping partner status
-- Lý do hủy đơn: reason for cancellation
-- Ngày đóng gói: the date the order was packed
-- Ngày hẹn giao hàng: delivery appointment date
-- Ngày xuất kho: date of inventory
-- Ngày giao hàng: delivery date
-- Đối tác giao hàng: name of shipping partner company
-- Dịch vụ giao hàng: name of delivery service
-- Khối lượng: package volume
-- Kích thước(DxRxC): package size
-- Tên người nhận: name of consignee
-- SĐT người nhận: number phone of consignee
-- Địa chỉ giao hàng: delivery address
-- Tỉnh/Thành: the province where the customer lives
-- Quận/Huyện: the district where the customer lives
-- Phường xã: the ward where the customer lives
-- Trạng thái đối soát: Control status
-- Tiền khách phải trả cho đơn: the amount the customer must pay
-- Khách hàng đã trả: the amount the customer has paid
-- Hình thức thanh toán: payments
-- Tổng tiền thu hộ: total amount collected
-- Phí vận chuyển: transport expense
-- Người trả phí: the party must pay the fee
-- Phí trả đối tác: the expense paid to partner company
-- Ghi chú đơn giao: notes for carrier
-- Mã sản phẩm: product code
-- Tên sản phẩm: product name
-- Ghi chú sản phẩm: product note
-- Serial: Unclear
-- Đơn vị tính: unit
-- Đơn giá: unit price
-- CK sản phẩm: product discount
-- CK tổng đơn hàng: order discount
-- Thuế cho từng sản phẩm: tax for each product
-- Tổng tiền hàng: total order amount
 </details>  
 
 ---
 
-## 🔎  Clean data then make operational report and dashboard
+## 🔎  Explore data and test model
 
 ### The Process is following 
-- [Cleaning data](https://colab.research.google.com/drive/1yyFx9yizeurIivMRMfWL0qw66xMab9SN?hl=vi)
-- [Operational Report](https://1drv.ms/b/c/cec2721c7222ade2/EauLpQgt5V1KhRSgeqEgGHoBPFZLdyjDjEI6-tx9832KVA?e=t7aota) 
-- [Dashboard](https://github.com/DucNT2k1/Build-operational-reports-and-dashboards-for-businesses/blob/main/Dashboard.pbix)
+- [Data Cleaning](https://colab.research.google.com/drive/1PXCQowsZyXC2Bils2oN7AinVXEVUiuLh?hl=vi#scrollTo=vwCzS7dXvYbp)
+- [EDA](https://colab.research.google.com/drive/1vncWaAklJbFMJ3jUAD7oRCwkC9yFCu4v?hl=vi#scrollTo=3UUbOme8WS15) 
+- [Data preprocessing and modeling](https://colab.research.google.com/drive/1nHdTfJ8_vRWfNTWsx1_foZQxB4ia8yn3?hl=vi)
